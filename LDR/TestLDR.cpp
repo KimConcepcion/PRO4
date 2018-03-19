@@ -15,7 +15,7 @@ void timerHandler(int signum)
 	if(signum == 14)
 	{
 		light = readLight();
-		fprintf(stdout, "Light read from LDR sensor is: %.2f Lux\n", light);
+		fprintf(stdout, "Light read from LDR sensor is: %.2f mV\n", light);
 		fflush(stdout);
 	}
 }
