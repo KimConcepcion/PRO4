@@ -15,7 +15,7 @@ cd /sys/class/gpio/gpio60/
 echo out > direction
 
 cd /sys/class/gpio/gpio49/
-echo out > direction
+echo in > direction
 
 cd /sys/class/gpio/gpio48/
 echo out > direction
