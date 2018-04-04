@@ -15,9 +15,8 @@ double readTemp()
 	tempFile.close();
 
 	//	Calibrate sensorvalue:
-	temp = (adc_val*1.8)/4095;
-	temp = (temp-0.5)*100;
-	temp_cal = temp+49;
+	temp = adc_val*1.8/4095;
+	temp_cal = (temp*100);
 
 	return temp_cal;
 }
