@@ -16,7 +16,7 @@ double readLight()
 	LDRFile.close();
 
 	//	Calibrate values:
-	light = (adc_val*1.8)/4095;
+	light = adc_val*1.8/4095;
 
 	return light;
 }

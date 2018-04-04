@@ -15,7 +15,7 @@ void timerHandler(int signum)
 	if(signum == 14)
 	{
 		light = readLight();
-		fprintf(stdout, "Light read from LDR sensor is: %.2f mV\n", light);
+		fprintf(stdout, "Light read from LDR sensor is: %.2f V\n", light);
 		fflush(stdout);
 	}
 }
@@ -27,9 +27,9 @@ int main(int argC, char **argV)
 		fprintf(stderr, "Could not install timerHandler\n");
 
 	struct itimerval timer;
-	timer.it_interval.tv_sec = 15;
+	timer.it_interval.tv_sec = 5;
 	timer.it_interval.tv_usec = 0;
-	timer.it_value.tv_sec  = 15;
+	timer.it_value.tv_sec  = 5;
 	timer.it_value.tv_usec = 0;
 
 	int retval = setitimer(ITIMER_REAL, &timer, NULL);
