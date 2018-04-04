@@ -8,13 +8,16 @@
 
 using namespace std;
 
-int readMoist()
+double readMoist()
 {
-	int number = 0;
+	double number = 0;
 
    fstream MoistFILE (MOIST_PATH, fstream::in);
    MoistFILE >> number;
    MoistFILE.close();
+
+   //	Calibrate sensorvalue:
+   number = number*1.8/4095;
 
    return number;
 }

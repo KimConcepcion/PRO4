@@ -14,7 +14,7 @@ void timerHandler(int signum)
 	if(signum == 14)
 	{
 		moist = readMoist();
-		fprintf(stdout, "Light read from LDR sensor is: %.2f Lux\n", moist);
+		fprintf(stdout, "moist read from moist sensor is: %.2f\n", moist);
 		fflush(stdout);
 
 		if (moist < 3000) {
@@ -33,9 +33,9 @@ int main(int argC, char **argV)
 		fprintf(stderr, "Could not install timerHandler\n");
 
 	struct itimerval timer;
-	timer.it_interval.tv_sec = 15;
+	timer.it_interval.tv_sec = 5;
 	timer.it_interval.tv_usec = 0;
-	timer.it_value.tv_sec  = 15;
+	timer.it_value.tv_sec  = 5;
 	timer.it_value.tv_usec = 0;
 
 	int retval = setitimer(ITIMER_REAL, &timer, NULL);
