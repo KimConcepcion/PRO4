@@ -1,6 +1,6 @@
-# Velkommen til PRO4
-Denne Git folder indeholder SW kode/💩 til PRO4 Urban Gardening.
+# Welcome to Project 4
+This Git repository contains the source code for the Urban Gardening project.
 
-**Bidragere:**
-- _Lasse A. Frederiksen_ 💩
-- _Kim C. Nielsen_ 💩
+**Contributors:**
+- _Lasse A. Frederiksen_
+- _Kim C. Nielsen_
