@@ -8,17 +8,19 @@ typedef unsigned int uint;
 class Sensor
 {
 public:
-	void getTemperature(uint *pPort, uint *pPin, double testVal);
-	void getLight(uint *pPort, uint *pPin, double testVal);
-	void getFertilizer(uint *pPort, uint *pPin, double testVal);
-	void getHumidity(uint *pPort, uint *pPin, double testVal);
-	//void getInput(void);
+	void getTemperature();
+	void getLight();
+	void getMoist();
 
 protected:
 	double tempSensor;
-	double lightSensor;
-	double fertSensor;
-	double humSensor;
+	double tempSensor_more;
+
+	int lightSensor;
+	int lightSensor_more;
+
+	double moistSensor;
+	double moistSensor_more;
 };
 
 #endif
