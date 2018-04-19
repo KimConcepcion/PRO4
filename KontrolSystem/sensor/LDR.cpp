@@ -23,7 +23,7 @@ int readLight_2()
 	double gpio_val = 0;
 
 	//	Input from file:
-	fstream LDRFile (LDR_1, fstream::in);
+	fstream LDRFile (LDR_2, fstream::in);
 	LDRFile >> gpio_val;
 	LDRFile.close();
 
