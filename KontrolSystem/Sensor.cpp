@@ -10,6 +10,7 @@
 #include "sensor/LM35DZ.h"
 #include "sensor/LDR.h"
 #include "sensor/MoistSensor.h"
+#include "Sqlitecode.h"
 
 void Sensor::getTemperature(){
 	tempSensor = readTemp_1();
