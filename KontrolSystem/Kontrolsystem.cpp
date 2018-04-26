@@ -7,12 +7,12 @@
 
 #include "Kontrolsystem.h"
 #include "mail.h"
+#include "Sqlitecode.h"
 #include <stdio.h>
 #include <unistd.h>
 #include <iostream>
 #include <stdlib.h>
 #include <ctype.h>
-
 ////////////KONTROLSYSTEM CONSTRUCTOR//////////
 Kontrolsystem::Kontrolsystem()
 {
@@ -548,7 +548,29 @@ void Kontrolsystem::sensorStatus()
 	getTemperature();
 	getLight();
 	getMoist();
-
+	ifstream f("Sensor_database.db");
+	if(!f.good()){
+		f.close();
+		Database_setup();
+		Database_insert();
+	}
+	else{
+		f.close();
+	}
+	string name;
+	name = "Heat_1";
+	Database_update(name, to_string(tempSensor));
+	name = "Heat_2";
+	Database_update(name, to_string(tempSensor_more));
+	name = "Light_1";
+	Database_update(name, to_string(lightSensor));
+	name = "Light_2";
+	Database_update(name, to_string(lightSensor_more));
+	name = "Water_1";
+	Database_update(name, to_string(moistSensor));
+	name = "Water_2";
+	Database_update(name, to_string(moistSensor_more));
+	Database_select();
 	cout << "----------------------------------" << endl;
 	cout << "[Sensor-status]" << endl;
 	printf("1. Temperature sensor: %.2lf °C\n", tempSensor);
@@ -571,5 +593,6 @@ void Kontrolsystem::sensorStatus()
 
 	printf("1. Moist sensor: %.2lf V\n", moistSensor);
 	printf("2. Moist sensor: %.2lf V\n", moistSensor_more);
+
 	cout << "----------------------------------" << endl;
 }
