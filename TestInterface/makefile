@@ -27,8 +27,6 @@ mail.o: ../mail/mail.cpp
 	$(CC) -c ../mail/mail.cpp
 watchdog.o: ../watchdog/watchdog.cpp
 	$(CC) -c ../watchdog/watchdog.cpp
-#Sqlitecode.o: ../../sqlite/Sqlitecode.cpp
-#	$(CC) -c ../../sqlite/Sqlitecode.cpp
 
 #	Build Object test files:
 TestLDR.o: ../../LDR/TestLDR.cpp
