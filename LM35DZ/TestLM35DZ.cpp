@@ -1,46 +1,33 @@
-
 #include <iostream>
-#include <csignal>
-#include <sys/time.h>
-#include <unistd.h>
 #include "LM35DZ.h"
 
 using namespace std;
 
-double temperature;
+int main(int argC, char **argV) {
 
-void timerHandler(int signum)
-{
-	if(signum == 14)
-	{
-		temperature = readTemp();
-		fprintf(stdout, "Temperature read by sensor is: %.2f\n", temperature);
-		fflush(stdout);
-	}
-}
+	double temperature_1 = readTemp_1();
+	double temperature_2 = readTemp_2();
 
-int main(int argC, char **argV)
-{
-	//	Install signal hanler for timer interrupts:
-	if(signal(14, timerHandler)==SIG_ERR)
-		fprintf(stderr, "Could not install timerHandler\n");
+	cout << "Running the LM35DZ sensor test" << endl;
+	cout << "1. LM35DZ path on Beaglebone: " << TEMP_1 << endl;
+	cout << "2. LM35DZ path on Beaglebone: " << TEMP_2 << endl;
 
-	struct itimerval timer;
-	timer.it_interval.tv_sec = 5;
-	timer.it_interval.tv_usec = 0;
-	timer.it_value.tv_sec  = 5;
-	timer.it_value.tv_usec = 0;
-
-	int retval = setitimer(ITIMER_REAL, &timer, NULL);
-	if(retval != 0)
-	{
-		fprintf(stderr, "Could not install timer\n");
-		exit(1);
+	if (temperature_1 > 18 && temperature_1 < 27) {
+		cout << "1. Temperature is OK, tempValue: " << temperature_1 << endl;
 	}
 
-	while(1)
-	{
+	else {
+		cerr << "1. temperature is NOT OK, tempValue " << temperature_1 << endl;
+		return -1;
 	}
 
+	if (temperature_2 > 18 && temperature_2 < 27) {
+		cout << "2. Temperature is OK, tempValue: " << temperature_2 << endl;
+	}
+
+	else {
+		cerr << "2. temperature is NOT OK, tempValue: " << temperature_2 << endl;
+		return -2;
+	}
 	return 0;
 }
