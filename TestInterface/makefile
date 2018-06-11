@@ -2,7 +2,7 @@
 CC=/opt/toolchains/gnueabihf/bin/arm-linux-gnueabihf-g++
 
 #echo "Building the module files and test files!";
-all: TestLDR TestLM35DZ TestMoist TestMail TestWdog #TestSql
+all: TestLDR TestLM35DZ TestMoist TestMail TestWdog
 
 #	Build test executables:
 TestLDR: TestLDR.o LDR.o
