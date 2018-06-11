@@ -1,47 +1,39 @@
 
-#include <csignal>
 #include <iostream>
 #include <stdio.h>
-#include <sys/time.h>
-#include <unistd.h>
 #include "LDR.h"
 
 using namespace std;
 
-double light;
+int main(void) {
+	cout << "Running the LDR sensor test" << endl;
+	cout << "1. LDR path on Beaglebone: " << LDR_1 << endl;
+	cout << "2. LDR path on Beaglebone: " << LDR_2 << endl;
 
-void timerHandler(int signum)
-{
-	if(signum == 14)
-	{
-		light = readLight();
-		fprintf(stdout, "Light read from LDR sensor is: %.2f V\n", light);
-		fflush(stdout);
-	}
-}
-
-int main(int argC, char **argV)
-{
-	//	Install signal hanler for timer interrupts:
-	if(signal(14, timerHandler)==SIG_ERR)
-		fprintf(stderr, "Could not install timerHandler\n");
-
-	struct itimerval timer;
-	timer.it_interval.tv_sec = 5;
-	timer.it_interval.tv_usec = 0;
-	timer.it_value.tv_sec  = 5;
-	timer.it_value.tv_usec = 0;
-
-	int retval = setitimer(ITIMER_REAL, &timer, NULL);
-	if(retval != 0)
-	{
-		fprintf(stderr, "Could not install timer\n");
-		exit(1);
+	if (readLight_1() == 1) {
+		cout << "Returnvalue from 1. LDR-routine: [HIGH]" << endl;
 	}
 
-	while(1)
-	{
+	else if (readLight_1() == 0) {
+		cout << "Returnvalue from 1. LDR-routine: [LOW]" << endl;
 	}
 
+	else {
+		cerr << "1. LDR Something wrong occured!" << endl;
+		return -1;
+	}
+
+	if (readLight_2() == 1) {
+		cout << "Returnvalue from 2. LDR-routine: [HIGH]" << endl;
+	}
+
+	else if (readLight_2() == 0) {
+		cout << "Returnvalue from 2. LDR-routine: [LOW]" << endl;
+	}
+
+	else {
+		cerr << "2. LDR: Something wrong occured!" << endl;
+		return -2;
+	}
 	return 0;
 }

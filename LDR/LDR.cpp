@@ -1,22 +1,30 @@
 
-#include "LDR.h"
 #include <iostream>
 #include <fstream>
+#include "LDR.h"
 
 using namespace std;
 
-double readLight()
+int readLight_1()
 {
-	double adc_val = 0;
-	double light = 0;
+	double gpio_val = 0;
 
 	//	Input from file:
-	fstream LDRFile (LDR_PATH, fstream::in);
-	LDRFile >> adc_val;
+	fstream LDRFile (LDR_1, fstream::in);
+	LDRFile >> gpio_val;
 	LDRFile.close();
 
-	//	Calibrate values:
-	light = adc_val*1.8/4095;
+	return gpio_val;
+}
 
-	return light;
+int readLight_2()
+{
+	double gpio_val = 0;
+
+	//	Input from file:
+	fstream LDRFile (LDR_2, fstream::in);
+	LDRFile >> gpio_val;
+	LDRFile.close();
+
+	return gpio_val;
 }
