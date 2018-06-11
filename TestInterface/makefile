@@ -1,7 +1,5 @@
 
 CC=/opt/toolchains/gnueabihf/bin/arm-linux-gnueabihf-g++
-#LIB=/home/Riemann/workspaces/PRO4/Project/lib
-#CFLAGS=-Wall
 
 #echo "Building the module files and test files!";
 all: TestLDR TestLM35DZ TestMoist TestMail TestWdog #TestSql
@@ -17,8 +15,6 @@ TestMail: TestMail.o mail.o
 	$(CC) TestMail.o mail.o -o TestMail
 TestWdog: TestWdog.o watchdog.o
 	$(CC) TestWdog.o watchdog.o -o TestWdog 
-#TestSql: TestSql.o Sqlitecode.o
-#	$(CC) TestSql.o Sqlitecode.o -o TestSql -l sqlite3 $(LIB)
 
 #	Build Object implementation files:
 LDR.o: ../sensor/LDR.cpp
@@ -45,8 +41,6 @@ TestMail.o: ../../mail/TestMail.cpp
 	$(CC) -c ../../mail/TestMail.cpp
 TestWdog.o: ../../Watchdog/TestWdog.cpp
 	$(CC) -c ../../Watchdog/TestWdog.cpp
-#TestSql.o: ../../sqlite/TestSql.cpp
-#	$(CC) -c ../../sqlite/TestSql.cpp
 
 clean:
 	rm *.o TestLDR TestLM35DZ TestMoist TestMail TestWdog #TestSql
