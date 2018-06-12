@@ -8,5 +8,4 @@ scp TestLM35DZ kim@beagle:~
 scp TestMoist kim@beagle:~
 scp TestMail kim@beagle:~
 scp TestWdog kim@beagle:~
-#./TestSql
 echo "All done!"
